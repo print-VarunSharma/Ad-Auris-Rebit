@@ -8,3 +8,7 @@ body {
   .rounded-lg {
     border-radius: 1rem;
   }
+
+  audio {
+    width: 100%;
+  }
