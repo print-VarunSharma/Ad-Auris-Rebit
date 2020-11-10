@@ -1,27 +1,67 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, jsonify, request
 from flask.templating import render_template_string
 import os
 from dotenv import load_dotenv
 load_dotenv()
+# Azure imports
+import translate, sentiment, synthesize
+
+
+
 
 # https://realpython.com/flask-by-example-part-1-project-setup/ for deploying with heroku later.
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
-@app.route("/", methods=['GET', 'POST'])
+
+@app.route('/Azureservices')
 def index():
     return render_template('index.html')
 
-@app.route("/home")
-def home():
-    return render_template("index.html", title="home")
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
 
 @app.route("/audiowidget")
 def audio_widget():
     return render_template("widget_analytics.html", title="audio_widget")
 
+
+@app.route('/translate-text', methods=['POST'])
+def translate_text():
+    data = request.get_json()
+    text_input = data['text']
+    translation_output = data['to']
+    response = translate.get_translation(text_input, translation_output)
+    return jsonify(response)
+
+@app.route('/sentiment-analysis', methods=['POST'])
+def sentiment_analysis():
+    data = request.get_json()
+    input_text = data['inputText']
+    input_lang = data['inputLanguage']
+    output_text = data['outputText']
+    output_lang =  data['outputLanguage']
+    response = sentiment.get_sentiment(input_text, input_lang, output_text, output_lang)
+    return jsonify(response)
+
+
+@app.route('/text-to-speech', methods=['POST'])
+def text_to_speech():
+    data = request.get_json()
+    text_input = data['text']
+    voice_font = data['voice']
+    tts = synthesize.TextToSpeech(text_input, voice_font)
+    tts.get_token()
+    audio_response = tts.save_audio()
+    return audio_response
+
+
 if __name__ == "__main__":
-    from waitress import serve
     app.debug = False
+    from waitress import serve
     # Turn debug on during local development mode
     port = int(os.environ.get('PORT', 33507))
     waitress.serve(app, port=port)

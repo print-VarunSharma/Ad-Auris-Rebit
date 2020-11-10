@@ -1,6 +1,8 @@
-# Rebit Audio Widget
+# Rebit Audio Widget & Azure Services
 
 This is an Audio Widget for Rebit by Ad-Auris. This customized solution is full stack with key data analytics.
+
+The second part of this app contains Ad-Auris's Azure services for Text-to-Speech, Translation, and Sentiment Analysis.
 
 ## Installation
 
@@ -28,6 +30,9 @@ Ensure that app.debug = False for production and app.debug = True during local d
     from waitress import serve
     port = int(os.environ.get('PORT', 33507))
     waitress.serve(app, port=port)
+
+    Use this command to run app locally:
+    *flask run*
 ```
 
 
