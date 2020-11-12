@@ -13,21 +13,27 @@ import translate, sentiment, synthesize
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
 
-
-@app.route('/Azureservices')
-def index():
-    return render_template('index.html')
-
-
 @app.route('/about')
 def about():
     return render_template('about.html')
 
 
-@app.route("/audiowidget")
-def audio_widget():
-    return render_template("widget_analytics.html", title="audio_widget")
+@app.route("/rebit_1")
+def rebit_1():
+    return render_template("rebit_1.html", title="audio_widget")
 
+@app.route('/rebit_3')
+def rebit_2():
+    return render_template('rebit_3.html')
+
+
+@app.route('/rebit_2')
+def rebit_3():
+    return render_template('rebit_2.html')
+
+@app.route('/Azureservices')
+def index():
+    return render_template('index.html')
 
 @app.route('/translate-text', methods=['POST'])
 def translate_text():
