@@ -26,7 +26,8 @@ body {
 
 .card {
   -webkit-border-radius: 10px;
-  border-radius: 10px; }
+  border-radius: 10px;
+ }
 
 .card .view {
   -webkit-border-top-left-radius: 10px;
@@ -66,3 +67,5 @@ body {
   margin-top: -3px;
   background: black;
   cursor: pointer; }
+
+

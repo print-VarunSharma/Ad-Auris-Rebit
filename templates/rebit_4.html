@@ -1,0 +1,28 @@
+{% extends 'rebit_4_base.html' %}
+
+{% block content %}
+    <!-- <h1>{% block title %} Rebit Audio Tool {% endblock %}</h1> -->
+    
+
+    <div class="audio-player">
+        <div id="play-btn"></div>
+        <div class="audio-wrapper" id="player-container" href="javascript:;">
+          <audio id="player" ontimeupdate="initProgressBar()">
+                  <source src="static\images\rebit-logo-01_0.jpg" type="audio/mp3">
+                </audio>
+        </div>
+        <div class="player-controls scrubber">
+          <p>Cyber Pulse November 2020 <small>by</small> ReBIT</p>
+          <span id="seekObjContainer">
+                  <progress id="seekObj" value="0" max="1"></progress>
+                </span>
+          <br>
+          <small style="float: left; position: relative; left: 15px;" class="start-time"></small>
+          <small style="float: right; position: relative; right: 20px;" class="end-time"></small>
+    
+        </div>
+        <div class="album-image" style="background-image: url('https://pbs.twimg.com/profile_images/1128268751567249409/orSCuy_k_400x400.png')"></div>
+      </div>
+{% endblock content %}
+
+

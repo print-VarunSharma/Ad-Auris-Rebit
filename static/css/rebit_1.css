@@ -1,8 +1,6 @@
 body {
-    background: #00B4DB;
-    background: -webkit-linear-gradient(to right, #0083B0, #00B4DB);
-    background: linear-gradient(to right, #0083B0, #00B4DB);
-    height: 100vh;
+  background:linear-gradient(135deg, #c3ec52 0%,#0ba29d 100%);
+  height: 100vh;
   }
   
   .rounded-lg {

@@ -11,7 +11,7 @@ import translate, sentiment, synthesize
 
 
 # https://realpython.com/flask-by-example-part-1-project-setup/ for deploying with heroku later.
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
 
 @app.route("/")
@@ -36,14 +36,26 @@ def rebit_2():
 def rebit_3():
     return render_template('rebit_3.html')
 
+@app.route('/rebit_4')
+def rebit_4():
+    return render_template('rebit_4.html')
+
+@app.route('/rebit_5')
+def rebit_5():
+    return render_template('rebit_5.html')
+
+@app.route('/rebit_6')
+def rebit_6():
+    return render_template('rebit_6.html')
+
 @app.route('/rebit_cyberpulse_nov')
 def rebit_cyberpulse_nov():
     return render_template('rebit_cyberpulse_nov.html')
 
 
-@app.route('/Azureservices')
+@app.route('/azureservices')
 def index():
-    return render_template('index.html')
+    return render_template('azure.html')
 
 @app.route('/translate-text', methods=['POST'])
 def translate_text():
