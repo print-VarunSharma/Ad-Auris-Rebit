@@ -1,0 +1,53 @@
+{% extends 'home_base.html' %}
+
+{% block content %}
+      <!-- Page Content -->
+
+
+  <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1519874179391-3ebc752241dd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">Instant Narrations</h2>
+            <p class="lead">Instantly transform your text content to scalable audio narration.</p>
+            <a class="btn btn-outline-success" href="https://www.ad-auris.com/" target="_blank" role="button">Narrate Now</a>
+          </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1460667262436-cf19894f4774?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">Audio Post-Proudction</h2>
+            <p class="lead">Audio enhancement + customize your narration with 80+ voices in 35 languages to maximize audience receptivity. </p>
+            <a class="btn btn-outline-success" href="https://www.ad-auris.com/" target="_blank" role="button">Narrate Now</a>
+
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1513258496099-48168024aec0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')">
+          <div class="carousel-caption d-none d-md-block">
+            <h2 class="display-4">Higher Engagement</h2>
+            <p class="lead">New ways to reach your audience and data analytics increase your audience's engagement with you</p>
+            <a class="btn btn-outline-success" href="https://www.ad-auris.com/" target="_blank" role="button">Narrate Now</a>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+    </div>
+  </header>
+  
+
+{% endblock content %}
