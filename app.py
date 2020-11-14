@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, jsonify, request, redirect
+from flask import Flask, render_template, url_for, jsonify, request, send_from_directory, redirect
 from flask.templating import render_template_string
 import os
 from dotenv import load_dotenv
@@ -14,6 +14,11 @@ import translate, sentiment, synthesize
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+                                                  
 @app.route("/")
 def home():
     return render_template("home.html")
