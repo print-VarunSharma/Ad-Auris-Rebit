@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, jsonify, request, send_from_directory, redirect
+from flask import Flask, render_template, url_for, jsonify, request, send_from_directory, redirect, flash
 from flask.templating import render_template_string
 import os
 from dotenv import load_dotenv
@@ -6,7 +6,7 @@ load_dotenv()
 # Azure imports
 import translate, sentiment, synthesize
 
-
+from flask_mail import Message, Mail
 # return redirect("http://www.example.com", code=302)
 
 
@@ -58,6 +58,68 @@ def rebit_cyberpulse_nov():
     return render_template('rebit_cyberpulse_nov.html')
 
 
+from flask_mail import Mail, Message
+
+mail = Mail()
+SECRET_KEY = os.getenv("SECRET_KEY")
+app.secret_key = SECRET_KEY
+MAIL_SERVER = os.getenv("MAIL_SERVER")
+MAIL_PORT = os.getenv("MAIL_PORT")
+MAIL_USERNAME = os.getenv("MAIL_USERNAME")
+MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
+
+app.config["MAIL_SERVER"] = MAIL_SERVER
+app.config["MAIL_PORT"] = MAIL_PORT
+app.config["MAIL_USE_SSL"] = True
+app.config["MAIL_USERNAME"] = MAIL_USERNAME
+app.config["MAIL_PASSWORD"] = MAIL_PASSWORD
+
+mail.init_app(app)
+# ---------------------------------------Contact----------------------------------
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+  form = ContactForm()
+ 
+  if request.method == 'POST':
+    if form.validate() == False:
+      flash('All fields are required.')
+      return render_template('contact.html', form=form)
+    else:
+      msg = Message(form.subject.data, sender='contact@example.com', recipients=['your_email@example.com'])
+      msg.body = """
+      From: %s &lt;%s&gt;
+      %s
+      """ % (form.name.data, form.email.data, form.message.data)
+      mail.send(msg)
+ 
+      return render_template('contact.html', success=True)
+ 
+  elif request.method == 'GET':
+    return render_template('contact.html', form=form)
+
+from wtforms import validators
+from wtforms import Form, TextAreaField, SubmitField, validators, TextField, BooleanField
+from wtforms.validators import Required, Email
+class ContactForm(Form):
+    name = TextField("Name",  [validators.Required("Please enter your name.")])
+    email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
+    subject = TextField("Subject",  [validators.Required("Please enter a subject.")])
+    message = TextAreaField("Message",  [validators.Required("Please enter a message.")])
+    submit = SubmitField("Send")
+#------------------------------------Feedback-----------------------------------------
+from flask_wtf import FlaskForm
+from wtforms import StringField, TextField, SubmitField
+from wtforms.validators import DataRequired, Length
+from forms import ContactForm
+@app.route('/feedback', methods=('GET', 'POST'))
+def feedback():
+    form = ContactForm()
+    if form.validate_on_submit():
+        return redirect(url_for('success'))
+    return render_template('feedback.html', form=form)
+
+
+# --------------------- Azure Cognitive Services ------------------------------------------
 @app.route('/azureservices')
 def index():
     return render_template('azure.html')
@@ -93,7 +155,7 @@ def text_to_speech():
 
 
 if __name__ == "__main__":
-    app.debug = False
+    app.debug = True
     from waitress import serve
     # Turn debug on during local development mode
     port = int(os.environ.get('PORT', 33507))

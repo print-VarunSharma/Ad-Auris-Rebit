@@ -69,3 +69,7 @@ body {
   cursor: pointer; }
 
 
+.numBox
+  {position:relative;}
+.num
+  {position:absolute; bottom:0; right:0;}
