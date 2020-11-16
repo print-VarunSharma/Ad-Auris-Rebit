@@ -27,6 +27,10 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route("/test_widget")
+def test_widget():
+    return render_template("test_widget.html", title="test_widget")
+
 @app.route("/rebit_1")
 def rebit_1():
     return render_template("rebit_1.html", title="audio_widget")
