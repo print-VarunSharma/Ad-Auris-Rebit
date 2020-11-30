@@ -28,7 +28,7 @@ Ensure that app.debug = False for production and app.debug = True during local d
     app.debug = True
     Can delete the bottom 3 lines here for local development
     from waitress import serve
-    port = int(os.environ.get('PORT', 33507))
+    port = int(os.environ.get('PORT')
     waitress.serve(app, port=port)
 
     Use this command to run app locally:
