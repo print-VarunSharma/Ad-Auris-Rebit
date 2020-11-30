@@ -1,46 +1,55 @@
-from flask import Flask, render_template, url_for, jsonify, request, send_from_directory, redirect, flash
+from flask import Flask, render_template, url_for, jsonify, request, send_from_directory, redirect
 from flask.templating import render_template_string
 import os
 from dotenv import load_dotenv
 load_dotenv()
 # Azure imports
 import translate, sentiment, synthesize
+"""
+This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
+App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
 
-# from flask_mail import Message, Mail
-# return redirect("http://www.example.com", code=302)
-
+"""
 
 # https://realpython.com/flask-by-example-part-1-project-setup/ for deploying with heroku later.
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
 
+
 # --------------------- Main Routes ------------------------------------------
+
 
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
-                                                  
+
+                                              
 @app.route("/")
 def home():
     return render_template("home.html")
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
 
 @app.route("/test_widget")
 def test_widget():
     return render_template("test_widget.html", title="test_widget")
 
+
+"""
+This route is a highly important route as it is running Rebit's first live widget that is collecting data through GTM.
+"""
 @app.route('/rebit_cyberpulse_nov')
 def rebit_cyberpulse_nov():
     return render_template('rebit_cyberpulse_nov.html')
 
+
 # --------------------- Azure Cognitive Services ------------------------------------------
+
+
 @app.route('/azureservices')
 def index():
     return render_template('azure.html')
+
 
 @app.route('/translate-text', methods=['POST'])
 def translate_text():
@@ -49,6 +58,7 @@ def translate_text():
     translation_output = data['to']
     response = translate.get_translation(text_input, translation_output)
     return jsonify(response)
+
 
 @app.route('/sentiment-analysis', methods=['POST'])
 def sentiment_analysis():
