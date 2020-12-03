@@ -34,6 +34,7 @@ def home():
 def test_widget():
     return render_template("test_widget.html", title="test_widget")
 
+# --------------------- Rebit ------------------------------------------
 
 """
 This route is a highly important route as it is running Rebit's first live widget that is collecting data through GTM.
@@ -42,7 +43,19 @@ This route is a highly important route as it is running Rebit's first live widge
 def rebit_cyberpulse_nov():
     return render_template('rebit_cyberpulse_nov.html')
 
+@app.route('/rebit_cyberpulse_dec')
+def rebit_cyberpulse_dec():
+    return render_template('rebit_cyberpulse_dec.html')
 
+# --------------------- Abiltiy Magazine ------------------------------------------
+@app.route('/ability_magazine_1')
+def ability_magazine_1():
+    return render_template('/ability_magazine_1.html')
+
+# --------------------- WomenLead ------------------------------------------
+@app.route('/womenlead_1')
+def womenlead_1():
+    return render_template('/womenlead_1.html')
 # --------------------- Azure Cognitive Services ------------------------------------------
 
 
