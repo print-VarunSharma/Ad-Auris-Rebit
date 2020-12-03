@@ -1,7 +1,17 @@
 {% extends 'rebit_main_base.html' %}
-
 {% block content %}
- <!-- Full Page Intro -->
+ 
+       <!-- Section Title -->
+ <section>
+    <div class="container p-5">
+        
+      <!-- For Widget Title -->
+      <div class="row mb-5 text-center text-white">
+        <div class="col-lg-10 mx-auto">
+          <h1 class="display-4">Cyber Pulse Narrations</h1>
+        </div>
+      </div>
+    <!-- Full Page Intro -->
  <div class="view">
     <!-- Mask & flexbox options-->
     <div class="mask gradient-card align-items-center">
@@ -9,15 +19,13 @@
       <div class="container d-flex justify-content-center my-4">
 
         <div id="mobile-box">
-
-            <h4 class="my-5 h5 text-center" style="color:rgb(235, 232, 234)"> <a href="https://www.ad-auris.com/" target="_blank">Powered by Ad-Auris<i class="fas fa-play ml-2"></a></i></i></h4>
-            
+                
           <!-- Card -->
           <div class="card">
 
             <!-- Card image -->
             <div class="view">
-              <img class="card-img-top" src="static\images\cyberpulse.jpg"
+              <img class="card-img-top" src="static\images\rebit-logo-01_0.jpg"
                 alt="Card image cap">
               <a href="https://rebit.org.in/" target="_blank">
                 <div class="mask gradient-card"></div>
@@ -28,18 +36,20 @@
             <div class="card-body text-center">
 
               <h5 class="h5 font-weight-bold"><a href="https://rebit.org.in/" target="_blank">ReBIT</a></h5>
-              <p class="mb-0">Cyber Pulse October 2020</p>
+              <p class="mb-0">Cyber Pulse November 2020</p>
 
               <audio id="music" preload="true" controls controlsList="nodownload">
-                <source src="static\audio\audiotest.mp3" type="audio/mp3">
-                    <source src="static\audio\audiotest.wav" type="audio/wav">
+                <source src="https://storage.googleapis.com/ad-auris-tts-app/internal-tts-files/Cyber%20Pulse%20-%20November.mp3" type="audio/mp3">
+
               </audio>
+              <p class="mb-0">Total Listening Time 21:21</p>
             
 
             </div>
 
           </div>
           <!-- Card -->
+          <p class="text-center">Powered By <a href="https://www.ad-auris.com/" target="_blank">Ad Auris</a></p>
 
 
         </div>
@@ -48,5 +58,12 @@
     </div>
     <!-- Mask & flexbox options-->
   </div>
+  <!-- Section Title -->
+</div>
+
+</section>
   <!-- Full Page Intro -->
+  <div class="footer">
+    <p class="text-center">Feedback?<a href="https://forms.gle/KN1RdM4wo5eXHMVs8" target="_blank"> Click Here</a></p>
+  </div>
 {% endblock content %}

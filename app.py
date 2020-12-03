@@ -43,6 +43,7 @@ This route is a highly important route as it is running Rebit's first live widge
 def rebit_cyberpulse_nov():
     return render_template('rebit_cyberpulse_nov.html')
 
+
 @app.route('/rebit_cyberpulse_dec')
 def rebit_cyberpulse_dec():
     return render_template('rebit_cyberpulse_dec.html')
@@ -52,13 +53,14 @@ def rebit_cyberpulse_dec():
 def ability_magazine_1():
     return render_template('/ability_magazine_1.html')
 
+
 # --------------------- WomenLead ------------------------------------------
 @app.route('/womenlead_1')
 def womenlead_1():
     return render_template('/womenlead_1.html')
+
+
 # --------------------- Azure Cognitive Services ------------------------------------------
-
-
 @app.route('/azureservices')
 def index():
     return render_template('azure.html')
