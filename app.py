@@ -40,23 +40,42 @@ def test_widget():
 This route is a highly important route as it is running Rebit's first live widget that is collecting data through GTM.
 """
 @app.route('/rebit_cyberpulse_nov')
-def rebit_cyberpulse_nov():
+def audio_widget_1():
     return render_template('rebit_cyberpulse_nov.html')
 
 
 @app.route('/rebit_cyberpulse_dec')
-def rebit_cyberpulse_dec():
+def audio_widget_2():
     return render_template('rebit_cyberpulse_dec.html')
 
 # --------------------- Abiltiy Magazine ------------------------------------------
-@app.route('/ability_magazine_1')
-def ability_magazine_1():
-    return render_template('/ability_magazine_1.html')
 
+@app.route('/ability-magazine-a-doll-like-me')
+def audio_widget_3():
+    return render_template('/ability-magazine-a-doll-like-me')
+
+@app.route('/ability-magazine-interview-with-mandy-harvey')
+def audio_widget_4():
+    return render_template('/ability-magazine-interview-with-mandy-harvey')
+
+
+@app.route('/ability-magazine-interview-with-nancy-silberkleit-ceo-of-archie-comics-co')
+def audio_widget_5():
+    return render_template('/ability-magazine-interview-with-nancy-silberkleit-ceo-of-archie-comics-co')
+
+
+@app.route('/ability-magazine-ian-harding')
+def audio_widget_6():
+    return render_template('/ability-magazine-ian-harding')
+
+
+@app.route('/ability-magazine-the-wikipedia-foundation')
+def audio_widget_7():
+    return render_template('/ability-magazine-the-wikipedia-foundation)
 
 # --------------------- WomenLead ------------------------------------------
 @app.route('/womenlead_1')
-def womenlead_1():
+def audio_widget_8():
     return render_template('/womenlead_1.html')
 
 
