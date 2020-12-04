@@ -50,28 +50,28 @@ def audio_widget_2():
 
 # --------------------- Abiltiy Magazine ------------------------------------------
 
-@app.route('/ability-magazine/a-doll-like-me')
+@app.route('/ability-magazine/a-doll-like-me/')
 def audio_widget_3():
-    return render_template('ability-magazine-a-doll-like-me.html')
+    return render_template('comingsoon.html')
 
-@app.route('/ability-magazine/interview-with-mandy-harvey')
+@app.route('/ability-magazine/interview-with-mandy-harvey/')
 def audio_widget_4():
-    return render_template('ability-magazine-interview-with-mandy-harvey.html')
+    return render_template('comingsoon.html')
 
 
-@app.route('/ability-magazine/interview-with-nancy-silberkleit-ceo-of-archie-comics-co')
+@app.route('/ability-magazine/interview-with-nancy-silberkleit-ceo-of-archie-comics-co/')
 def audio_widget_5():
-    return render_template('ability-magazine-interview-with-nancy-silberkleit-ceo-of-archie-comics-co.html')
+    return render_template('comingsoon.html')
 
 
-@app.route('/ability-magazine/ian-harding')
+@app.route('/ability-magazine/ian-harding/')
 def audio_widget_6():
-    return render_template('ability-magazine-ian-harding.html')
+    return render_template('comingsoon.html')
 
 
-@app.route('/ability-magazine/the-wikipedia-foundation')
+@app.route('/ability-magazine/the-wikipedia-foundation/')
 def audio_widget_7():
-    return render_template('ability-magazine-the-wikipedia-foundation.html')
+    return render_template('comingsoon.html')
 
 @app.route('/ability-test')
 def audio_widget_ability():
