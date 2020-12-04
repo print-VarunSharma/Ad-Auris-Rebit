@@ -1,69 +1,53 @@
-{% extends 'rebit_main_base.html' %}
+{% extends 'rebit_cyberpulse_dec_base.html' %}
 {% block content %}
- 
-       <!-- Section Title -->
- <section>
-    <div class="container p-5">
+<section>
+<div class="container fluid">
+  <div class="justify-content-center">
+      <div class="col-md-8 ">
+          <!-- Column content -->
         
-      <!-- For Widget Title -->
-      <div class="row mb-5 text-center text-white">
-        <div class="col-lg-10 mx-auto">
-          <h1 class="display-4">Cyber Pulse Narrations</h1>
-        </div>
-      </div>
-    <!-- Full Page Intro -->
- <div class="view">
-    <!-- Mask & flexbox options-->
-    <div class="mask gradient-card align-items-center">
-      <!-- Content -->
-      <div class="container d-flex justify-content-center my-4">
-
-        <div id="mobile-box">
-                
-          <!-- Card -->
-          <div class="card">
-
-            <!-- Card image -->
-            <div class="view">
-              <img class="card-img-top" src="static\images\rebit-logo-01_0.jpg"
-                alt="Card image cap">
-              <a href="https://rebit.org.in/" target="_blank">
-                <div class="mask gradient-card"></div>
-              </a>
+          <!-- Company Logo -->
+          
+          <div class="row">
+            <div>
+              <img class="mx-auto d-block" src="static\images\rebit-logo-01_0.jpg" alt="...">
             </div>
+          </div>
+     
+          <!-- End Company Logo -->
 
-            <!-- Card content -->
-            <div class="card-body text-center">
-
-              <h5 class="h5 font-weight-bold"><a href="https://rebit.org.in/" target="_blank">ReBIT</a></h5>
-              <p class="mb-0">Cyber Pulse November 2020</p>
-
+          <!-- Widget Title -->
+          <div class="row">
+            <div>
+              <h1>Cyber Pulse Narrations</h1>            
+            </div>
+          </div>
+         
+        <!-- End Widget Title -->
+           <!-- Audio Player -->
+           <div class="row">
+            <div>
               <audio id="music" preload="true" controls controlsList="nodownload">
                 <source src="https://storage.googleapis.com/ad-auris-tts-app/internal-tts-files/Cyber%20Pulse%20-%20November.mp3" type="audio/mp3">
-
               </audio>
-              <p class="mb-0">Total Listening Time 21:21</p>
-            
-
             </div>
-
           </div>
-          <!-- Card -->
-          <p class="text-center">Powered By <a href="https://www.ad-auris.com/" target="_blank">Ad Auris</a></p>
+     
+       
+        <!-- End Audio Player -->
 
-
-        </div>
+          <!-- End Column content -->
       </div>
-      <!-- Content -->
-    </div>
-    <!-- Mask & flexbox options-->
   </div>
-  <!-- Section Title -->
 </div>
 
 </section>
-  <!-- Full Page Intro -->
-  <div class="footer">
-    <p class="text-center">Feedback?<a href="https://forms.gle/KN1RdM4wo5eXHMVs8" target="_blank"> Click Here</a></p>
-  </div>
+
+
+
+ <!-- Footer -->
+<div class="footer">
+  <p class="text-center" color="black">Feedback?<a href="https://forms.gle/KN1RdM4wo5eXHMVs8" target="_blank"> Click Here</a></p>
+</div>
+
 {% endblock content %}
