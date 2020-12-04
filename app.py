@@ -64,7 +64,7 @@ def audio_widget_5():
     return render_template('comingsoon.html')
 
 
-@app.route('/ability-magazine-$=ian-harding', strict_slashes=True)
+@app.route('/ability-magazine/ian-harding')
 def audio_widget_6():
     return render_template('comingsoon.html')
 
