@@ -52,27 +52,30 @@ def audio_widget_2():
 
 @app.route('/ability-magazine-a-doll-like-me')
 def audio_widget_3():
-    return render_template('/ability-magazine-a-doll-like-me')
+    return render_template('/ability-magazine-a-doll-like-me.html')
 
 @app.route('/ability-magazine-interview-with-mandy-harvey')
 def audio_widget_4():
-    return render_template('/ability-magazine-interview-with-mandy-harvey')
+    return render_template('/ability-magazine-interview-with-mandy-harvey.html')
 
 
 @app.route('/ability-magazine-interview-with-nancy-silberkleit-ceo-of-archie-comics-co')
 def audio_widget_5():
-    return render_template('/ability-magazine-interview-with-nancy-silberkleit-ceo-of-archie-comics-co')
+    return render_template('/ability-magazine-interview-with-nancy-silberkleit-ceo-of-archie-comics-co.html')
 
 
 @app.route('/ability-magazine-ian-harding')
 def audio_widget_6():
-    return render_template('/ability-magazine-ian-harding')
+    return render_template('/ability-magazine-ian-harding.html')
 
 
 @app.route('/ability-magazine-the-wikipedia-foundation')
 def audio_widget_7():
-    return render_template('/ability-magazine-the-wikipedia-foundation)
+    return render_template('/ability-magazine-the-wikipedia-foundation.html')
 
+@app.route('/ability-test')
+def audio_widget_ability():
+    return render_template('ability-test.html')
 # --------------------- WomenLead ------------------------------------------
 @app.route('/womenlead_1')
 def audio_widget_8():
