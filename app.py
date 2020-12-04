@@ -24,7 +24,6 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-                                              
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -50,11 +49,12 @@ def audio_widget_2():
 
 # --------------------- Abiltiy Magazine ------------------------------------------
 
-@app.route('/ability-magazine/a-doll-like-me/')
+@app.route('/ability-magazine/a-doll-like-me')
 def audio_widget_3():
     return render_template('comingsoon.html')
 
-@app.route('/ability-magazine/interview-with-mandy-harvey/')
+
+@app.route('/ability-magazine/interview-with-mandy-harvey')
 def audio_widget_4():
     return render_template('comingsoon.html')
 
@@ -64,18 +64,24 @@ def audio_widget_5():
     return render_template('comingsoon.html')
 
 
-@app.route('/ability-magazine/ian-harding/')
+@app.route('/ability-magazine-ian-harding', strict_slashes=True)
 def audio_widget_6():
     return render_template('comingsoon.html')
 
 
-@app.route('/ability-magazine/the-wikipedia-foundation/')
+@app.route('/ability-magazine/the-wikipedia-foundation')
 def audio_widget_7():
     return render_template('comingsoon.html')
+
 
 @app.route('/ability-test')
 def audio_widget_ability():
     return render_template('ability-test.html')
+
+@app.route('/ability-magazine/<article_name>')
+def article_slug(article_name):
+    return(HTML_TEMPLATE.substitute(article_url_name=article_name))
+
 # --------------------- WomenLead ------------------------------------------
 @app.route('/womenlead_1')
 def audio_widget_8():
@@ -120,7 +126,7 @@ def text_to_speech():
 
 
 if __name__ == "__main__":
-    app.debug = False
+    app.debug = True
     from waitress import serve
     # Turn debug on during local development mode
     port = int(os.environ.get('PORT', 33507))
