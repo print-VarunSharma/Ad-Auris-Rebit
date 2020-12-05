@@ -12,19 +12,22 @@ def on_start(self):
 class WebsiteUser(HttpUser):
     wait_time = between(5, 15)
 
-    @task
+    @task(1)
     def index(self):
-        self.client.get("/")
-        self.client.get("/static/images")
-        
-    @task
+        self.client.get("http://localhost:33507/")
+        self.client.get("http://localhost:33507/static/images")
+
+    @task(2)
     def rebit_nov(self):
-        self.client.get("/rebit_cyberpulse_nov")
+        self.client.get("http://localhost:33507/rebit_cyberpulse_nov")
     
-    @task
+    @task(3)
     def rebit_dec(self):
-        self.client.get("/rebit/cyberpulse-dec")
-	
+        self.client.get("http://localhost:33507/rebit/cyberpulse-dec")
+
+    def abiltiy_Test(self):
+        self.client.get("http://localhost:33507/abiltiy_test")
+
 
 class stressTest(HttpUser):
 	task_set = WebsiteUser

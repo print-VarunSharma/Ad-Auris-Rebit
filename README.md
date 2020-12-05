@@ -33,6 +33,16 @@ Ensure that app.debug = False for production and app.debug = True during local d
     *flask run*
 ```
 
+## Testing
+
+For stress testing update locustfile.py as needed. 
+```bash 
+In one terminal run "flask run" with multithreading turned on 
+While the flask is running, in another terminal enter "locust"
+Then go to "localhost:8089" and enter the swarming parameters as needed.
+
+```
+
 
 ## Contents
 
