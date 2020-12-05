@@ -11,7 +11,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 -First Release for Rebit's Audio Widget
 
-## [Released]
 ## [1.1.0] - 11-29-2020
 ### Added
 - Rebit Widget file patch update
@@ -22,6 +21,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 -overall file clean up in templates, css, js files.
 
+## [1.1.0] - 12-05-2020
+### Added
+- New Audio widgets and templates for Rebit and Ability Magazine
+- URL Slugging origanization update by client and article name
+- Iframe links, sizing, and css.
+### Changed
+- Rebit December Link
 
+### Removed
+-overall file clean up.
 [Unreleased]:
 
