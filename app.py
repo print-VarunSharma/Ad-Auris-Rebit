@@ -90,6 +90,7 @@ def audio_widget_8():
 
 if __name__ == "__main__":
     app.debug = False
+    app.run(threaded=True)
     from waitress import serve
     # Turn debug on during local development mode
     port = int(os.environ.get('PORT', 33507))
