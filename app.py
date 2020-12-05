@@ -42,9 +42,9 @@ def audio_widget_1():
     return render_template('rebit_cyberpulse_nov.html')
 
 
-@app.route('/rebit_cyberpulse_dec')
+@app.route('/rebit/cyberpulse-dec')
 def audio_widget_2():
-    return render_template('rebit/cyberpulse-dec.html')
+    return render_template('rebit-cyberpulse-dec.html')
 
 # --------------------- Abiltiy Magazine ------------------------------------------
 
