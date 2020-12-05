@@ -44,14 +44,14 @@ def audio_widget_1():
 
 @app.route('/rebit_cyberpulse_dec')
 def audio_widget_2():
-    return render_template('rebit_cyberpulse_dec.html')
+    return render_template('rebit/cyberpulse-dec.html')
 
 # --------------------- Abiltiy Magazine ------------------------------------------
 
 
 @app.route('/ability-magazine/a-doll-like-me')
 def audio_widget_3():
-    return render_template('comingsoon.html')
+    return render_template('scomingsoon.html')
 
 
 @app.route('/ability-magazine/interview-with-mandy-harvey')
