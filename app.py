@@ -3,8 +3,6 @@ from flask.templating import render_template_string
 import os
 from dotenv import load_dotenv
 load_dotenv()
-# Azure imports
-import translate, sentiment, synthesize
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
 App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
@@ -23,6 +21,7 @@ app.config['JSON_AS_ASCII'] = False
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 
 @app.route("/")
 def home():
@@ -48,6 +47,7 @@ def audio_widget_2():
     return render_template('rebit_cyberpulse_dec.html')
 
 # --------------------- Abiltiy Magazine ------------------------------------------
+
 
 @app.route('/ability-magazine/a-doll-like-me')
 def audio_widget_3():
@@ -77,6 +77,7 @@ def audio_widget_7():
 @app.route('/ability-test')
 def audio_widget_ability():
     return render_template('ability-test.html')
+
 
 # @app.route('/ability-magazine/<article_name>')
 # def article_slug(article_name):
