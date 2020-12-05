@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New Audio widgets and templates for Rebit and Ability Magazine
 - URL Slugging origanization update by client and article name
 - Iframe links, sizing, and css.
+- Latency and Stress testing for client and server side
 ### Changed
 - Rebit December Link
 
