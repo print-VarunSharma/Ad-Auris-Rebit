@@ -87,46 +87,8 @@ def audio_widget_ability():
 def audio_widget_8():
     return render_template('/womenlead_1.html')
 
-
-# --------------------- Azure Cognitive Services ------------------------------------------
-@app.route('/azureservices')
-def index():
-    return render_template('azure.html')
-
-
-@app.route('/translate-text', methods=['POST'])
-def translate_text():
-    data = request.get_json()
-    text_input = data['text']
-    translation_output = data['to']
-    response = translate.get_translation(text_input, translation_output)
-    return jsonify(response)
-
-
-@app.route('/sentiment-analysis', methods=['POST'])
-def sentiment_analysis():
-    data = request.get_json()
-    input_text = data['inputText']
-    input_lang = data['inputLanguage']
-    output_text = data['outputText']
-    output_lang =  data['outputLanguage']
-    response = sentiment.get_sentiment(input_text, input_lang, output_text, output_lang)
-    return jsonify(response)
-
-
-@app.route('/text-to-speech', methods=['POST'])
-def text_to_speech():
-    data = request.get_json()
-    text_input = data['text']
-    voice_font = data['voice']
-    tts = synthesize.TextToSpeech(text_input, voice_font)
-    tts.get_token()
-    audio_response = tts.save_audio()
-    return audio_response
-
-
 if __name__ == "__main__":
-    app.debug = True
+    app.debug = False
     from waitress import serve
     # Turn debug on during local development mode
     port = int(os.environ.get('PORT', 33507))

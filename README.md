@@ -1,8 +1,6 @@
-# Rebit Audio Widget & Azure Services
+# Ad Auris Audio Widget
 
-This is an Audio Widget for Rebit by Ad-Auris. This customized solution is full stack with key data analytics.
-
-The second part of this app contains Ad-Auris's Azure services for Text-to-Speech, Translation, and Sentiment Analysis.
+Audio widget for Ad-Auris customers. This customized solution is full stack with key data analytics.
 
 ## Installation
 
