@@ -78,7 +78,11 @@ def audio_widget_7():
 def audio_widget_ability():
     return render_template('ability-test.html')
 
+@app.route('/ability-magazine/veronika')
+def audio_widget_ability_testV2():
+    return render_template('/ability-magazine-veronika.html')
 
+    
 # @app.route('/ability-magazine/<article_name>')
 # def article_slug(article_name):
 #     return(HTML_TEMPLATE.substitute(article_url_name=article_name))
