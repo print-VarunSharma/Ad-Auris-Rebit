@@ -18,6 +18,7 @@
 audio {
   background-color: transparent;
   filter: drop-shadow(0px 10px 10px rgba(100,100,100,0.4));
+  object-fit: contain;
 }
 @media screen and (max-height: 400px) {
   #sticky-footer, .display-4, .view > img, #mobile-box > .card > .card-body > p, h5, h1 {
@@ -57,5 +58,11 @@ audio {
 @media screen and (max-height: 200px) {
   #mobile-box {
     margin-top: -80px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  audio {
+    width: 80vw;
   }
 }
