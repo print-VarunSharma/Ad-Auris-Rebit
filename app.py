@@ -13,6 +13,8 @@ import logging
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import traceback
+from models import Log
+
 
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
