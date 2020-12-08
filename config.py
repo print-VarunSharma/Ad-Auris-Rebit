@@ -10,7 +10,7 @@ Config.py - Maintains app configs and settings.
 """
 
 class Config(object):
-    DEBUG = True
+    DEBUG = False
     TESTING = True
     CSRF_ENABLED = True
     SECRET_KEY = os.getenv("SECRET_KEY")
