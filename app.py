@@ -3,7 +3,6 @@ from flask.templating import render_template_string
 import os
 from dotenv import load_dotenv
 load_dotenv()
-
 import datetime
 import time
 import colors
@@ -16,6 +15,7 @@ import traceback
 import json
 import psycopg2
 from flask_heroku import Heroku
+import os.path
 
 
 """
@@ -31,37 +31,24 @@ app.config['JSON_AS_ASCII'] = False
 app.config.from_object('config')
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
+# ------------------- DATABASE CONFIGS -----------------------------------------
+
+ENV = 'prod'
+
 DATABASE_URL = os.getenv("DATABASE_URL")
 heroku = Heroku(app)
-
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 basedir = os.path.abspath(os.path.dirname(__file__))
-# if app.run(debug=True, threaded=True) == True:
-#     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite3')
-# elif app.run(debug=True, threaded=True) == True:
-#     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
-#     conn = psycopg2.connect(DATABASE_URL,sslmode='require')
-import os.path
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite3')
+
+if ENV == 'dev':
+    app.debug = True
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite3')
+else: 
+    app.debug = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://ugcaiyuvhyyfci:14ad4abd5b5aa3f8567aa530a3a92f204644e6b514e2ffd21eff606aeda96226@ec2-23-20-205-19.compute-1.amazonaws.com:5432/d1mf5k5it0la2"
+    # conn = psycopg2.connect(DATABASE_URL,sslmode='require')
 
 db = SQLAlchemy(app)
-
-print(db)
-
-# ------------------- DATABASE CONFIGS -----------------------------------------
-# ENV = 'dev'
-
-# if ENV == 'dev':
-#     app.debug = True
-#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost/flaskqna'
-# else:
-#     app.debug = False
-#     app.config['SQLALCHEMY_DATABASE_URI'] = ''
-
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-# db = SQLAlchemy(app)
 
 # -------------------  DATABASE CONFIGS ----------------------------------------
 
