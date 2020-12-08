@@ -9,6 +9,7 @@ import time
 import colors
 from flask import g, request
 from rfc3339 import rfc3339
+import logging
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
 App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
@@ -166,6 +167,8 @@ if __name__ == "__main__":
     app.run(threaded=True)
     from waitress import serve
     # Turn debug on during local development mode
+    gunicorn_logger = logging.getLogger('gunicorn.error')
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
     port = int(os.environ.get('PORT', 33507))
     waitress.serve(app, port=port)
-
