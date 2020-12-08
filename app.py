@@ -14,6 +14,13 @@ app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
 
 
+@app.errorhandler(404) 
+# inbuilt function which takes error as parameter 
+def not_found(e): 
+    print(e)
+# defining function 
+    return render_template("404.html") 
+
 # --------------------- Main Routes ------------------------------------------
 
 
@@ -83,9 +90,9 @@ def audio_widget_ability_testV2():
     return render_template('/ability-magazine-veronika.html')
 
     
-# @app.route('/ability-magazine/<article_name>')
+# @app.route('/test/<string: article_name>')
 # def article_slug(article_name):
-#     return(HTML_TEMPLATE.substitute(article_url_name=article_name))
+#      return(HTML_TEMPLATE.substitute(article_url_name=article_name))
 
 # --------------------- WomenLead ------------------------------------------
 @app.route('/womenlead_1')
