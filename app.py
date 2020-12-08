@@ -21,6 +21,11 @@ def not_found(e):
 # defining function 
     return render_template("404.html") 
 
+app.register_error_handler(400, handle_bad_request)
+def bad_request(e):
+    print(e)
+    return
+
 # --------------------- Main Routes ------------------------------------------
 
 
