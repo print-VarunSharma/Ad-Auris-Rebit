@@ -3,6 +3,12 @@ from flask.templating import render_template_string
 import os
 from dotenv import load_dotenv
 load_dotenv()
+
+import datetime
+import time
+import colors
+from flask import g, request
+from rfc3339 import rfc3339
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
 App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
@@ -13,6 +19,57 @@ App.py will not run correctly if project file structure is not in an appropiate 
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
 
+
+@app.before_request
+def start_timer():
+    g.start = time.time()
+
+
+@app.before_request
+def start_timer():
+    g.start = time.time()
+
+
+@app.after_request
+def log_request(response):
+    if request.path == '/favicon.ico':
+        return response
+    elif request.path.startswith('/static'):
+        return response
+
+    now = time.time()
+    duration = round(now - g.start, 2)
+    dt = datetime.datetime.fromtimestamp(now)
+    timestamp = rfc3339(dt, utc=True)
+
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    host = request.host.split(':', 1)[0]
+    args = dict(request.args)
+
+    log_params = [
+        ('method', request.method, 'blue'),
+        ('path', request.path, 'blue'),
+        ('status', response.status_code, 'yellow'),
+        ('duration', duration, 'green'),
+        ('time', timestamp, 'magenta'),
+        ('ip', ip, 'red'),
+        ('host', host, 'red'),
+        ('params', args, 'blue')
+    ]
+
+    request_id = request.headers.get('X-Request-ID')
+    if request_id:
+        log_params.append(('request_id', request_id, 'yellow'))
+
+    parts = []
+    for name, value, color in log_params:
+        part = colors.color("{}={}".format(name, value), fg=color)
+        parts.append(part)
+    line = " ".join(parts)
+
+    app.logger.info(line)
+
+    return response
 
 @app.errorhandler(404) 
 # inbuilt function which takes error as parameter 
