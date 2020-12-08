@@ -13,8 +13,6 @@ import logging
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import traceback
-from models import Log
-
 
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
@@ -26,16 +24,40 @@ App.py will not run correctly if project file structure is not in an appropiate 
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql-flat-87607'
+def db_construction:
+    if app.debug = True
+    return app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://User.sqlite3'
+    elif app.debug == False
+    return app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql-flat-87607'
+
+
+
 
 db = SQLAlchemy(app)
 
-class User(db.Model):
-    __tablename__ = "user"
-db.session.add(newdata)
-
-
 # --------------------- Database Logs ------------------------------------------
+
+class Log(db.Model):
+    __tablename__ = 'ad-auris-narrations-audiowidget-logs'
+    id = db.Column(db.Integer, primary_key=True) # auto incrementing
+    logger = db.Column(db.String(100)) # the name of the logger. (e.g. myapp.views)
+    level = db.Column(db.String(100)) # info, debug, or error?
+    trace = db.Column(db.String(4096)) # the full traceback printout
+    msg = db.Column(db.String(4096)) # any custom log you may have included
+    created_at = db.Column(db.DateTime, default=db.func.now()) # the current timestamp
+
+    def __init__(self, logger=None, level=None, trace=None, msg=None):
+        self.logger = logger
+        self.level = level
+        self.trace = trace
+        self.msg = msg
+
+    def __unicode__(self):
+        return self.__repr__()
+
+    def __repr__(self):
+        return "<Log: %s - %s>" % (self.created_at.strftime('%m/%d/%Y-%H:%M:%S'), self.msg[:50])
+
 
 class SQLAlchemyHandler(logging.Handler):
     
@@ -218,7 +240,7 @@ def audio_widget_8():
 if __name__ == "__main__":
     # Dev - Prod Settings
         # Turn debug on during local development mode
-    app.debug = False
+    app.debug = True
     app.run(threaded=True)
     from waitress import serve
 
