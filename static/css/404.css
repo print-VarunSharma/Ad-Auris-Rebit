@@ -1,11 +1,11 @@
 body {
     height: 100%;
     width: 100%;
-    background-image: url('https://unsplash.com/photos/ZDNyhmgkZlQ');
+    background-image: url('static\images\will-francis-ZDNyhmgkZlQ-unsplash.jpg');
   }
 .masthead {
     height: 100%;
-    background-image: url('https://unsplash.com/photos/ZDNyhmgkZlQ');
+    background-image: url('static\images\will-francis-ZDNyhmgkZlQ-unsplash.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
