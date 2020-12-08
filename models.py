@@ -2,6 +2,11 @@ from app import db
 from sqlalchemy.dialects.postgresql import JSON
 from manage import db 
 
+
+"""
+models.py - Creates the db table for the production logs.
+"""
+
 class Log(db.Model):
     __tablename__ = 'ad-auris-narrations-audiowidget-logs'
     id = db.Column(db.Integer, primary_key=True) # auto incrementing

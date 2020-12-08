@@ -22,10 +22,24 @@ import os.path
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
 App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
 
+Terms:
+dev = development
+prod = production
+
 """
 
 # https://realpython.com/flask-by-example-part-1-project-setup/ for deploying with heroku later.
 
+# ------------------- App init Configs and settings -----------------------------------------
+"""
+App init - Initializes the app settings. 
+
+@app: static url must be set to static to allow serving static files during dev and prod
+
+@app.config: Secret key must be set in .env file during prod.
+
+
+"""
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
 app.config.from_object('config')

@@ -1,7 +1,12 @@
 from locust import HttpLocust, TaskSet, task, HttpUser, between
 import random
 import json
+"""
+Locustfile.py utilize Locust for stress testing the applcation under simulated environment with server requests. 
+Mainly used to test performance, load handling, failure rate, code bottlenecks, and DDOS handling. 
 
+@Class WebsiteUser: Simulates client side user requests within the application.
+"""
 
 sampleIds = ["Logan1","Tina5","Nick8", "Keith7", "Jayden99"]
 
