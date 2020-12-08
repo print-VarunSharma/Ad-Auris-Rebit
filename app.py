@@ -10,6 +10,10 @@ import colors
 from flask import g, request
 from rfc3339 import rfc3339
 import logging
+from flask_sqlalchemy import SQLAlchemy
+from flask_wtf.csrf import CSRFProtect
+import traceback
+
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
 App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
@@ -19,7 +23,52 @@ App.py will not run correctly if project file structure is not in an appropiate 
 # https://realpython.com/flask-by-example-part-1-project-setup/ for deploying with heroku later.
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql-flat-87607'
 
+db = SQLAlchemy(app)
+
+class User(db.Model):
+    __tablename__ = "user"
+db.session.add(newdata)
+
+
+# --------------------- Database Logs ------------------------------------------
+
+class SQLAlchemyHandler(logging.Handler):
+    
+    def emit(self, record):
+        trace = None
+        exc = record.__dict__['exc_info']
+        if exc:
+            trace = traceback.format_exc()
+        log = Log(
+            logger=record.__dict__['name'],
+            level=record.__dict__['levelname'],
+            trace=trace,
+            msg=record.__dict__['msg'],)
+        db.session.add(log)
+        db.session.commit()
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+ch = SQLAlchemyHandler()
+ch.setLevel(logging.INFO)
+
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+
+
+
+loggers = [logger, logging.getLogger('werkzeug'),  logging.getLogger('sqlalchemy'), logging.getLogger('flask.app')]
+
+for l in loggers:
+    l.addHandler(ch)
+
+csrf = CSRFProtect()
+
+# --------------------- Developement Logs ------------------------------------------
 
 @app.before_request
 def start_timer():
@@ -71,6 +120,8 @@ def log_request(response):
     app.logger.info(line)
 
     return response
+
+# --------------------- Error Handling ------------------------------------------
 
 @app.errorhandler(404) 
 # inbuilt function which takes error as parameter 
@@ -163,12 +214,20 @@ def audio_widget_8():
     return render_template('/womenlead_1.html')
 
 if __name__ == "__main__":
+    # Dev - Prod Settings
+        # Turn debug on during local development mode
     app.debug = False
     app.run(threaded=True)
     from waitress import serve
-    # Turn debug on during local development mode
+
+    # Gunicorn Production Logging
     gunicorn_logger = logging.getLogger('gunicorn.error')
     app.logger.handlers = gunicorn_logger.handlers
     app.logger.setLevel(gunicorn_logger.level)
+
+    # Database init
+    csrf.init_app(app)
+    logger.critical('TEST CRITICAL ERROR')
+
     port = int(os.environ.get('PORT', 33507))
     waitress.serve(app, port=port)
