@@ -13,11 +13,11 @@ import logging
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import traceback
-
-
+import json
 import psycopg2
-DATABASE_URL = os.getenv("DATABASE_URL")
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+from flask_heroku import Heroku
+
+
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
 App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
@@ -28,16 +28,43 @@ App.py will not run correctly if project file structure is not in an appropiate 
 
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
+app.config.from_object('config')
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+heroku = Heroku(app)
+
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-# basedir = os.path.abspath(os.path.dirname(__file__))
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
-
-
+basedir = os.path.abspath(os.path.dirname(__file__))
+# if app.run(debug=True, threaded=True) == True:
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite3')
+# elif app.run(debug=True, threaded=True) == True:
+#     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
+#     conn = psycopg2.connect(DATABASE_URL,sslmode='require')
+import os.path
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'app.sqlite3')
 
 db = SQLAlchemy(app)
 
 print(db)
+
+# ------------------- DATABASE CONFIGS -----------------------------------------
+# ENV = 'dev'
+
+# if ENV == 'dev':
+#     app.debug = True
+#     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456@localhost/flaskqna'
+# else:
+#     app.debug = False
+#     app.config['SQLALCHEMY_DATABASE_URI'] = ''
+
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# db = SQLAlchemy(app)
+
+# -------------------  DATABASE CONFIGS ----------------------------------------
+
 # --------------------- Database Logs ------------------------------------------
 
 class Log(db.Model):
@@ -94,6 +121,7 @@ for l in loggers:
     l.addHandler(ch)
 
 csrf = CSRFProtect()
+db.create_all()
 
 # --------------------- Developement Logs ------------------------------------------
 

@@ -1,5 +1,7 @@
 from app import db
 from sqlalchemy.dialects.postgresql import JSON
+from manage import db 
+
 class Log(db.Model):
     __tablename__ = 'ad-auris-narrations-audiowidget-logs'
     id = db.Column(db.Integer, primary_key=True) # auto incrementing
@@ -21,3 +23,5 @@ class Log(db.Model):
     def __repr__(self):
         return "<Log: %s - %s>" % (self.created_at.strftime('%m/%d/%Y-%H:%M:%S'), self.msg[:50])
 
+if __name__ == '__main__':
+    db.create_all()
