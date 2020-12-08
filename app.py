@@ -32,7 +32,10 @@ app.config.from_object('config')
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 # ------------------- DATABASE CONFIGS -----------------------------------------
+"""
+Database Config initializes the Dynamic Database and allows for context switching due to the inaccessibility of HerokuPostgreSQL in local development. Dev DB uses SQL Lite, and Production DB uses HerokuPostgreSQL.
 
+"""
 ENV = 'prod'
 
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -53,7 +56,10 @@ db = SQLAlchemy(app)
 # -------------------  DATABASE CONFIGS ----------------------------------------
 
 # --------------------- Database Logs ------------------------------------------
+"""
+Database Logs - logs all the production logs for requests and errors. 
 
+"""
 class Log(db.Model):
     __tablename__ = 'ad-auris-narrations-audiowidget-logs'
     id = db.Column(db.Integer, primary_key=True) # auto incrementing
@@ -111,7 +117,10 @@ csrf = CSRFProtect()
 db.create_all()
 
 # --------------------- Developement Logs ------------------------------------------
+"""
+Development Logs - logs all the development logs for all requests and errors. It is organized and color coded for optimizing visual ques.
 
+"""
 @app.before_request
 def start_timer():
     g.start = time.time()
@@ -164,7 +173,11 @@ def log_request(response):
     return response
 
 # --------------------- Error Handling ------------------------------------------
+"""
+Error Handling - Handles 400 level and 500 level errors and redirects to a pre-set template for the user.
+User can push a button to go back. This prevents the application from breaking and for opimizing user journey.
 
+"""
 @app.errorhandler(404) 
 # inbuilt function which takes error as parameter 
 def not_found(e): 
@@ -178,7 +191,10 @@ def internal_server_error(e):
     print(e)
     return render_template('500.html'), 500
 # --------------------- Main Routes ------------------------------------------
+"""
+Main Routes - All app routing is executed from here. All live widgets deployed on customer websites are using these specified URLs.
 
+"""
 
 @app.route('/favicon.ico')
 def favicon():
@@ -251,14 +267,27 @@ def audio_widget_ability_testV2():
 #      return(HTML_TEMPLATE.substitute(article_url_name=article_name))
 
 # --------------------- WomenLead ------------------------------------------
+
 @app.route('/womenlead_1')
 def audio_widget_8():
     return render_template('/womenlead_1.html')
 
+ # --------------------- App Configs & Settings ------------------------------------------
+
+"""
+App Configs & Settings - This compiles the app in a desired way for dev and prod. 
+
+@app.run: Debug must be True during dev and False for prod.
+
+@app.run: Threading must be on to handle a multitude of requests at once.
+
+@app.logger: Handles Gunicorn production logging outside of Heroku logs
+
+"""
 if __name__ == "__main__":
     # Dev - Prod Settings
         # Turn debug on during local development mode
-    app.run(debug=True, threaded=True)
+    app.run(debug=False, threaded=True)
     from waitress import serve
 
     # Gunicorn Production Logging
