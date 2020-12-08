@@ -21,11 +21,11 @@ def not_found(e):
 # defining function 
     return render_template("404.html") 
 
-app.register_error_handler(400, handle_bad_request)
-def bad_request(e):
+@app.errorhandler(500)
+def internal_server_error(e):
+    # note that we set the 500 status explicitly
     print(e)
-    return
-
+    return render_template('500.html'), 500
 # --------------------- Main Routes ------------------------------------------
 
 
