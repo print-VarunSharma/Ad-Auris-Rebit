@@ -6,7 +6,7 @@ from app import app, db
 manage.py -  migrates the Flask SQLAlchemy db to the production db when called.
 """
 migrate = Migrate(app, db)
-
+db.init_app(app)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 

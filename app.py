@@ -67,8 +67,6 @@ else:
 
 db = SQLAlchemy(app)
 
-# -------------------  DATABASE CONFIGS ----------------------------------------
-
 # --------------------- Database Logs ------------------------------------------
 """
 Database Logs - logs all the production logs for requests and errors. 
