@@ -14,6 +14,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import traceback
 
+
+import psycopg2
+DATABASE_URL = os.getenv("DATABASE_URL")
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 """
 This app.py file is the main backend code that flask runs on. Mainly initiates the flask hosting, and the main routes.
 App.py will not run correctly if project file structure is not in an appropiate format for flask. Ensure static, templates, etc folders are in proper form.
@@ -21,20 +25,19 @@ App.py will not run correctly if project file structure is not in an appropiate 
 """
 
 # https://realpython.com/flask-by-example-part-1-project-setup/ for deploying with heroku later.
+
 app = Flask(__name__, static_url_path='/static')
 app.config['JSON_AS_ASCII'] = False
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-def db_construction:
-    if app.debug = True
-    return app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://User.sqlite3'
-    elif app.debug == False
-    return app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql-flat-87607'
 
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+# basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 
 
 
 db = SQLAlchemy(app)
 
+print(db)
 # --------------------- Database Logs ------------------------------------------
 
 class Log(db.Model):
@@ -240,8 +243,7 @@ def audio_widget_8():
 if __name__ == "__main__":
     # Dev - Prod Settings
         # Turn debug on during local development mode
-    app.debug = True
-    app.run(threaded=True)
+    app.run(debug=True, threaded=True)
     from waitress import serve
 
     # Gunicorn Production Logging
