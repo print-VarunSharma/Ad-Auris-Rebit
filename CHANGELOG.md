@@ -32,5 +32,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 -overall file clean up.
+
+## [1.1.0] - 12-08-2020
+### Added
+- Server Error Handling - 400, and 500 level
+- Development and Production Database U
+ - Heroku PostgreSQL
+- Logging insights from dev and prod
+### Changed
+- Requirements.txt, Procfile for prod changes
+
 [Unreleased]:
 
