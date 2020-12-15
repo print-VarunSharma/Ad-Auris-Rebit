@@ -230,8 +230,11 @@ This route is a highly important route as it is running Rebit's first live widge
 """
 @app.route('/rebit_cyberpulse_nov')
 def audio_widget_1():
-    return render_template('rebit_cyberpulse_nov.html')
+    return redirect("https://ad-auris-narrations.herokuapp.com/rebit/cyberpulse-nov", code=302)
 
+@app.route('/rebit/cyberpulse-nov')
+def audio_widget_1_redirect():
+    return render_template('rebit_cyberpulse_nov.html')
 
 @app.route('/rebit/cyberpulse-dec')
 def audio_widget_2():
