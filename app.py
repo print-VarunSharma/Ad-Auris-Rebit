@@ -13,7 +13,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_wtf.csrf import CSRFProtect
 import traceback
 import json
-import psycopg2
+# import psycopg2
+import requests
 from flask_heroku import Heroku
 import os.path
 
@@ -271,6 +272,12 @@ def audio_widget_7():
 @app.route('/ability-test')
 def audio_widget_ability():
     return render_template('ability-test.html')
+
+@app.route('/<user>/<article>')
+def audio_widget(user='', article=''):
+    data = requests.get('http://localhost:3000/widget/' + user + '/' + article)
+    print(data.json()[0]['file'])
+    return render_template('test.html', title=data.json()[0]['title'], narration=data.json()[0]['file'])
 
 @app.route('/ability-magazine/veronika')
 def audio_widget_ability_testV2():
