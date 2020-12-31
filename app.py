@@ -196,7 +196,7 @@ User can push a button to go back. This prevents the application from breaking a
 def not_found(e): 
     print(e)
 # defining function 
-    return render_template("404.html") 
+    return render_template("404.html"), 404
 
 @app.errorhandler(500)
 def internal_server_error(e):
