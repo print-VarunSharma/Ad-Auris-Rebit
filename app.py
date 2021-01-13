@@ -273,20 +273,10 @@ def audio_widget_7():
 def audio_widget_ability():
     return render_template('ability-test.html')
 
-@app.route('/<user>/<article>')
-def audio_widget(user='', article=''):
-    data = requests.get('http://localhost:3000/widget/' + user + '/' + article)
-    print(data.json()[0]['file'])
-    return render_template('test.html', title=data.json()[0]['title'], narration=data.json()[0]['file'])
-
 @app.route('/ability-magazine/veronika')
 def audio_widget_ability_testV2():
     return render_template('/ability-magazine-veronika.html')
 
-    
-# @app.route('/test/<string: article_name>')
-# def article_slug(article_name):
-#      return(HTML_TEMPLATE.substitute(article_url_name=article_name))
 
 # --------------------- WomenLead ------------------------------------------
 
@@ -294,7 +284,28 @@ def audio_widget_ability_testV2():
 def audio_widget_8():
     return render_template('/womenlead_1.html')
 
+
+# ------------------------ Automated URL for Audio Widget --------------------------
+
+# ----------------------------------Production -----------------------------------------
+@app.route('/<user>/<article>')
+def audio_widget(user='', article=''):
+    data = requests.get('http://dashboard-ad-auris.com/widget/' + user + '/' + article)
+    print(data.json()[0]['file'])
+    return render_template('test.html', title=data.json()[0]['title'], narration=data.json()[0]['file'])
+
+
+# --------------------------------- Development -----------------------------------
+
+@app.route('/<user>/<article>')
+def audio_test_widget(user='', article=''):
+    data = requests.get('http://localhost:3000/widget/' + user + '/' + article)
+    print(data.json()[0]['file'])
+    return render_template('test.html', title=data.json()[0]['title'], narration=data.json()[0]['file'])  
+
+
  # --------------------- App Configs & Settings ------------------------------------------
+
 
 """
 App Configs & Settings - This compiles the app in a desired way for dev and prod. 
