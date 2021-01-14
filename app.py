@@ -285,6 +285,17 @@ def audio_widget_8():
     return render_template('/womenlead_1.html')
 
 
+# --------------------- disabiltiy Horizons ------------------------------------------
+
+@app.route('/disability-horizons/amar-latif-entrepreneur-tvpersonality-masterchef-2021')
+def audio_widget_9():
+    return render_template('/disability-horizons-amar-latif.html')
+
+
+@app.route('/disability-horizons/10-things-disability-teaches-you-2021')
+def audio_widget_10():
+    return render_template('/disability-horizons-10-things.html')
+
 # ------------------------ Automated URL for Audio Widget --------------------------
 
 # ----------------------------------Production -----------------------------------------
